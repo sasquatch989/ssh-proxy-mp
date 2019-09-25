@@ -1,0 +1,305 @@
+# The format of this file is documented in the dhcpd.leases(5) manual page.
+# This lease file was written by isc-dhcp-4.2.2
+
+lease 10.102.50.239 {
+  starts 3 2019/09/18 11:10:53;
+  ends 3 2019/09/18 23:10:53;
+  tstp 3 2019/09/18 23:10:53;
+  cltt 3 2019/09/18 11:10:53;
+  binding state free;
+  hardware ethernet b4:d1:35:00:1f:9c;
+}
+lease 10.102.50.240 {
+  starts 3 2019/09/18 14:52:24;
+  ends 4 2019/09/19 02:52:24;
+  tstp 4 2019/09/19 02:52:24;
+  cltt 3 2019/09/18 14:52:24;
+  binding state free;
+  hardware ethernet b4:d1:35:00:1f:9d;
+  uid "\001\264\3215\000\037\235";
+}
+lease 10.102.50.245 {
+  starts 0 2019/09/22 21:16:59;
+  ends 1 2019/09/23 09:16:59;
+  cltt 0 2019/09/22 21:16:59;
+  binding state active;
+  next binding state free;
+  rewind binding state free;
+  hardware ethernet 00:e0:ec:ca:44:ef;
+  client-hostname "cloudistics-storage-4d8a447ead9643e29e4a42a5ff3c7ed4";
+}
+lease 10.102.50.147 {
+  starts 0 2019/09/22 21:25:21;
+  ends 1 2019/09/23 09:25:21;
+  cltt 0 2019/09/22 21:25:21;
+  binding state active;
+  next binding state free;
+  rewind binding state free;
+  hardware ethernet b4:d1:35:00:1f:ad;
+  client-hostname "750c0f4c-de27-46a0-a5d3-a16eaa67126a";
+}
+lease 10.102.50.144 {
+  starts 0 2019/09/22 21:44:22;
+  ends 1 2019/09/23 09:44:22;
+  cltt 0 2019/09/22 21:44:22;
+  binding state active;
+  next binding state free;
+  rewind binding state free;
+  hardware ethernet b4:d1:35:00:1f:a5;
+  client-hostname "de1ec586-c74d-4b42-8c2e-511f836f38b7";
+}
+lease 10.102.50.246 {
+  starts 0 2019/09/22 21:44:49;
+  ends 1 2019/09/23 09:44:49;
+  cltt 0 2019/09/22 21:44:49;
+  binding state active;
+  next binding state free;
+  rewind binding state free;
+  hardware ethernet 08:94:ef:59:21:22;
+  client-hostname "cloudistics-compute-56493ba3c76d43c5a46f9b5cd11f3197";
+}
+lease 10.102.50.146 {
+  starts 0 2019/09/22 21:47:01;
+  ends 1 2019/09/23 09:47:01;
+  cltt 0 2019/09/22 21:47:01;
+  binding state active;
+  next binding state free;
+  rewind binding state free;
+  hardware ethernet b4:d1:35:00:1f:ac;
+  client-hostname "5d3496f3-8d59-426e-a4c4-b05d5c90cdc6";
+}
+lease 10.102.50.237 {
+  starts 0 2019/09/22 21:50:42;
+  ends 1 2019/09/23 09:50:42;
+  cltt 0 2019/09/22 21:50:42;
+  binding state active;
+  next binding state free;
+  rewind binding state free;
+  hardware ethernet 00:e0:ec:b8:ab:c8;
+  client-hostname "cloudistics-storage-b167e017e4c141028153278dcd49a752";
+}
+lease 10.102.50.143 {
+  starts 0 2019/09/22 22:00:00;
+  ends 1 2019/09/23 10:00:00;
+  cltt 0 2019/09/22 22:00:00;
+  binding state active;
+  next binding state free;
+  rewind binding state free;
+  hardware ethernet b4:d1:35:00:1f:a3;
+  client-hostname "367df9e1-7b2c-40c1-b7bd-3c8463ab0fdc";
+}
+lease 10.102.50.243 {
+  starts 0 2019/09/22 22:06:34;
+  ends 1 2019/09/23 10:06:34;
+  cltt 0 2019/09/22 22:06:34;
+  binding state active;
+  next binding state free;
+  rewind binding state free;
+  hardware ethernet 08:94:ef:59:20:a2;
+  client-hostname "cloudistics-compute-38904b3724844cee84058d94e4b63fa8";
+}
+lease 10.102.50.140 {
+  starts 0 2019/09/22 22:11:22;
+  ends 1 2019/09/23 10:11:22;
+  cltt 0 2019/09/22 22:11:22;
+  binding state active;
+  next binding state free;
+  rewind binding state free;
+  hardware ethernet 00:e0:ec:b8:ab:b6;
+  client-hostname "cloudistics-storage-0993e8c654a04e5aa7e55c7439a67a98";
+}
+lease 10.102.50.233 {
+  starts 0 2019/09/22 23:17:59;
+  ends 1 2019/09/23 11:17:59;
+  cltt 0 2019/09/22 23:17:59;
+  binding state active;
+  next binding state free;
+  rewind binding state free;
+  hardware ethernet 00:e0:ec:b8:ab:b4;
+  client-hostname "cloudistics-storage-0993e8c654a04e5aa7e55c7439a67a98";
+}
+lease 10.102.50.244 {
+  starts 0 2019/09/22 23:18:17;
+  ends 1 2019/09/23 11:18:17;
+  cltt 0 2019/09/22 23:18:17;
+  binding state active;
+  next binding state free;
+  rewind binding state free;
+  hardware ethernet 00:e0:ec:ca:44:ee;
+  client-hostname "cloudistics-storage-4d8a447ead9643e29e4a42a5ff3c7ed4";
+}
+lease 10.102.50.238 {
+  starts 0 2019/09/22 23:38:51;
+  ends 1 2019/09/23 11:38:51;
+  cltt 0 2019/09/22 23:38:51;
+  binding state active;
+  next binding state free;
+  rewind binding state free;
+  hardware ethernet 00:e0:ec:b8:ab:c9;
+  client-hostname "cloudistics-storage-b167e017e4c141028153278dcd49a752";
+}
+lease 10.102.50.63 {
+  starts 0 2019/09/22 23:58:42;
+  ends 1 2019/09/23 11:58:42;
+  cltt 0 2019/09/22 23:58:42;
+  binding state active;
+  next binding state free;
+  rewind binding state free;
+  hardware ethernet 00:e0:ec:b8:ab:b7;
+  client-hostname "cloudistics-storage-0993e8c654a04e5aa7e55c7439a67a98";
+}
+lease 10.102.50.247 {
+  starts 1 2019/09/23 00:03:56;
+  ends 1 2019/09/23 12:03:56;
+  cltt 1 2019/09/23 00:03:56;
+  binding state active;
+  next binding state free;
+  rewind binding state free;
+  hardware ethernet 00:e0:ec:b8:ab:c7;
+  client-hostname "cloudistics-storage-b167e017e4c141028153278dcd49a752";
+}
+lease 10.102.50.235 {
+  starts 1 2019/09/23 00:14:21;
+  ends 1 2019/09/23 12:14:21;
+  cltt 1 2019/09/23 00:14:21;
+  binding state active;
+  next binding state free;
+  rewind binding state free;
+  hardware ethernet 00:e0:ec:ca:44:f0;
+  client-hostname "cloudistics-storage-4d8a447ead9643e29e4a42a5ff3c7ed4";
+}
+lease 10.102.50.145 {
+  starts 1 2019/09/23 00:38:58;
+  ends 1 2019/09/23 12:38:58;
+  cltt 1 2019/09/23 00:38:58;
+  binding state active;
+  next binding state free;
+  rewind binding state free;
+  hardware ethernet b4:d1:35:00:1f:a8;
+  client-hostname "174ea795-5906-4b61-aa84-18101734fb41";
+}
+lease 10.102.50.234 {
+  starts 1 2019/09/23 00:51:07;
+  ends 1 2019/09/23 12:51:07;
+  cltt 1 2019/09/23 00:51:07;
+  binding state active;
+  next binding state free;
+  rewind binding state free;
+  hardware ethernet 00:e0:ec:b8:ab:c6;
+  client-hostname "cloudistics-storage-b167e017e4c141028153278dcd49a752";
+}
+lease 10.102.50.236 {
+  starts 1 2019/09/23 00:59:43;
+  ends 1 2019/09/23 12:59:43;
+  cltt 1 2019/09/23 00:59:43;
+  binding state active;
+  next binding state free;
+  rewind binding state free;
+  hardware ethernet 00:e0:ec:ca:44:f1;
+  client-hostname "cloudistics-storage-4d8a447ead9643e29e4a42a5ff3c7ed4";
+}
+lease 10.102.50.76 {
+  starts 1 2019/09/23 01:15:39;
+  ends 1 2019/09/23 13:15:39;
+  cltt 1 2019/09/23 01:15:39;
+  binding state active;
+  next binding state free;
+  rewind binding state free;
+  hardware ethernet 00:e0:ec:b8:ab:b5;
+  client-hostname "cloudistics-storage-0993e8c654a04e5aa7e55c7439a67a98";
+}
+lease 10.103.50.9 {
+  starts 1 2019/09/23 00:00:21;
+  ends 1 2019/09/23 12:00:21;
+  cltt 1 2019/09/23 00:00:21;
+  binding state active;
+  next binding state free;
+  rewind binding state free;
+  hardware ethernet 08:94:ef:52:f7:8e;
+}
+lease 10.103.50.3 {
+  starts 1 2019/09/23 00:42:50;
+  ends 1 2019/09/23 12:42:50;
+  cltt 1 2019/09/23 00:42:50;
+  binding state active;
+  next binding state free;
+  rewind binding state free;
+  hardware ethernet 08:94:ef:59:1b:b3;
+  client-hostname "XCC-7X21-J1004YA3";
+}
+lease 10.103.50.2 {
+  starts 1 2019/09/23 00:50:41;
+  ends 1 2019/09/23 12:50:41;
+  cltt 1 2019/09/23 00:50:41;
+  binding state active;
+  next binding state free;
+  rewind binding state free;
+  hardware ethernet 08:94:ef:59:1c:b3;
+  client-hostname "XCC-7X21-J1004YA2";
+}
+lease 10.103.50.11 {
+  starts 1 2019/09/23 01:05:55;
+  ends 1 2019/09/23 13:05:55;
+  cltt 1 2019/09/23 01:05:55;
+  binding state active;
+  next binding state free;
+  rewind binding state free;
+  hardware ethernet 00:e0:ec:b8:ab:ca;
+  uid "\001\000\340\354\270\253\312";
+  client-hostname "Athena";
+}
+lease 10.103.50.7 {
+  starts 1 2019/09/23 01:16:25;
+  ends 1 2019/09/23 13:16:25;
+  cltt 1 2019/09/23 01:16:25;
+  binding state active;
+  next binding state free;
+  rewind binding state free;
+  hardware ethernet 00:e0:ec:b8:ab:fa;
+  uid "\001\000\340\354\270\253\372";
+  client-hostname "Athena";
+}
+lease 10.103.50.12 {
+  starts 1 2019/09/23 02:28:58;
+  ends 1 2019/09/23 14:28:58;
+  cltt 1 2019/09/23 02:28:58;
+  binding state active;
+  next binding state free;
+  rewind binding state free;
+  hardware ethernet 00:e0:ec:b8:ab:b8;
+  uid "\001\000\340\354\270\253\270";
+  client-hostname "Athena";
+}
+server-duid "\000\001\000\001$\366\362/<,\231\314O\001";
+
+lease 10.102.50.146 {
+  starts 1 2019/09/23 02:41:26;
+  ends 1 2019/09/23 14:41:26;
+  cltt 1 2019/09/23 02:41:26;
+  binding state active;
+  next binding state free;
+  rewind binding state free;
+  hardware ethernet b4:d1:35:00:1f:ac;
+  client-hostname "5d3496f3-8d59-426e-a4c4-b05d5c90cdc6";
+}
+lease 10.102.50.147 {
+  starts 1 2019/09/23 02:49:20;
+  ends 1 2019/09/23 14:49:20;
+  cltt 1 2019/09/23 02:49:20;
+  binding state active;
+  next binding state free;
+  rewind binding state free;
+  hardware ethernet b4:d1:35:00:1f:ad;
+  client-hostname "750c0f4c-de27-46a0-a5d3-a16eaa67126a";
+}
+lease 10.102.50.143 {
+  starts 1 2019/09/23 02:49:37;
+  ends 1 2019/09/23 14:49:37;
+  cltt 1 2019/09/23 02:49:37;
+  binding state active;
+  next binding state free;
+  rewind binding state free;
+  hardware ethernet b4:d1:35:00:1f:a3;
+  client-hostname "367df9e1-7b2c-40c1-b7bd-3c8463ab0fdc";
+}
+Shared connection to localhost closed.

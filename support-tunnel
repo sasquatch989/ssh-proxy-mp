@@ -1,0 +1,103 @@
+#!/bin/bash
+
+PRXY_SRC=/var/tmp/support/scripts/src
+SM_PORT=$1
+SETUP=False
+
+usage() {
+  printf "Usage:  support-tunnel -p <SUPPORT_MODE_PORT> \n"
+	exit 1
+}
+
+#Build local .ssh/cm_config file
+set_cm_config() {
+  printf "Setting up local SSH environment...\n"
+  #Check if ssh config exists, create file if not.
+  if [[ ! -e ~/.ssh/config ]]; then
+	  mkdir -p ~/.ssh; touch ~/.ssh/config
+  fi
+
+  #Look for proxy in existing config, back up existing as config.bak, insert new config at top
+  if [[ ! $(<"$HOME"/.ssh/config) =~ 'proxy' ]]; then
+	  cp "$HOME"/.ssh/config "$HOME"/.ssh/config.bak 
+	  printf "\nEnter your proxy user name (firstname.lastname): \n"
+	  read -r PRXY_USER
+  	  cat << EOF - $HOME/.ssh/config > $HOME/.ssh/config.tmp
+host proxy
+  User $PRXY_USER
+  HostName ignite-proxy.cloudistics.com
+  ControlMaster auto
+  ControlPath $HOME/.ssh/cm-%h:%p
+  ControlPersist 10m
+  StrictHostKeyChecking no
+  UserKnownHostsFile=/dev/null
+  LogLevel ERROR
+EOF
+	  mv "$HOME"/.ssh/config.tmp "$HOME"/.ssh/config
+	  chmod 600 "$HOME"/.ssh/config
+	  chmod 700 "$HOME"/.ssh
+  fi
+
+  ssh proxy "bash ${PRXY_SRC}/support-tunnel/conf_setup" 
+}
+
+set_cm_session() {
+  ssh proxy -t "nohup ssh interconnect -p ${SM_PORT} -Nfg > /dev/null"
+}
+
+set_cm_status() {
+  PRXY_STATUS=$(ssh proxy -O check 2>&1)
+  if [[ $(<"$PRXY_STATUS") =~ 'running' ]]; then
+	    IC_STATUS=$(ssh proxy ssh interconnect -p ${SM_PORT} -O check 2>&1)
+	    if [[ $(<"$IC_STATUS") =~ 'running' ]]; then
+		   return 0
+	    elif [[ $(<"$IC_STATUS") =~ 'refused' ]]; then
+		    ssh proxy ssh interconnect -p ${SM_PORT} rm ~/.ssh/cm-*${SM_PORT}
+	    fi
+  elif [[ $(<"$PRXY_STATUS") =~ 'refused' ]]; then	    
+	    rm "$HOME"/.ssh/cm-localhost:"$SM_PORT"
+  fi
+  set_cm_session
+}
+
+get_ic_info() {
+  DHCP_TABLE=$(ssh proxy "ssh interconnect -p ${SM_PORT} cat /var/lib/dhcp/dhcpd.leases > dhcpd.leases; python dhcp_table2")
+  COMP_NODES=$(grep compute <<< "$DHCP_TABLE" | awk '{printf "%s\n",$1}')
+  echo ${COMP_NODES}
+  for i in "$COMP_NODES"; do
+	  echo ${i}
+	ssh proxy -t "ssh interconnect -p ${SM_PORT} -tt ssh -i .ssh/cldtx_* ${i} sudo cloudistics-control list"
+  done
+  OPEN_PORTS=$(ssh proxy "ssh interconnect -p ${SM_PORT} netstat -tln4" | grep -Po "(?<=:)\d+")
+}
+
+set_prx_ports() {
+  get_rand_port
+  ssh proxy -O forward -L9443:localhost:"$NEW_PORT"
+  BMC_WEB_PRX_PORT="$NEW_PORT"
+  get_rand_port
+  ssh proxy -O forward -L5900:localhost:"$NEW_PORT"
+  BMC_VNC_PRX_PORT="$NEW_PORT"
+  get_rand_port
+  ssh proxy -O forward -L"$SM_PORT":localhost:"$NEW_PORT"
+  HYP_VNC_PRX_PORT="$NEW_PORT"
+
+}
+
+get_rand_port() {
+  NEW_PORT=$(shuf -i 10000-39999 -n1)
+  if [[ -n $(grep -w "$NEW_PORT" <<< "$OPEN_PORTS") ]]; then 
+	  get_rand_port
+  fi
+  OPEN_PORTS="$OPEN_PORTS $NEW_PORT"
+}
+
+main() {
+
+set_cm_config
+set_cm_session
+get_ic_info
+set_prx_ports
+}
+
+main "$@"

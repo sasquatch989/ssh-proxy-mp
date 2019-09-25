@@ -1,0 +1,103 @@
+#!/bin/bash
+
+SM_PORT=$1
+CM_PRX2IC=/home/solomon.sands/cm2ic
+REM_CONTROL_PATH=/home/${USER_NAME}/.ssh/cm-${SM_PORT}
+
+usage() {
+pass
+}
+
+#Build local .ssh/cm_config file
+set_cm_config() {
+  printf "1 setting up environment...\n"
+  if [[ ! -e ~/.ssh/cm_config ]]; then
+	  mkdir -p ~/.ssh
+	  printf "Enter your proxy user name: \n"
+	  read -r PRXY_USER
+	  cat << EOF > $HOME/.ssh/cm_config
+host proxy
+  User $PRXY_USER
+  HostName ignite-proxy.cloudistics.com
+  ControlMaster auto
+  ControlPath $HOME/.ssh/cm-%C
+  ControlPersist 10m
+  StrictHostKeyChecking no
+  UserKnownHostsFile=/dev/null
+  LogLevel DEBUG
+EOF
+  fi
+  CM_PROXY="/usr/bin/ssh proxy -F $HOME/.ssh/cm_config"
+}
+
+#Connect CM to Proxy
+cm_loc2prx() {
+
+cm_connect "-Nfg" "Creating connection to Proxy"
+}
+
+#Primary command function
+cm_connect() {
+  /usr/bin/ssh proxy -F ${HOME}/.ssh/cm_config -Nfg
+  /usr/bin/ssh proxy -F ${HOME}/.ssh/cm_config ${1}
+}
+
+#Connect Proxy CM to Primary IC
+#cm_prx2ic() { 
+#  get_status " -t -O check" "Checking Proxy Status"
+#  if [[ $CM_STATUS == 'dead' ]]; then
+#	  cm_connect " -t bash ${CM_PRX2IC} -p ${SM_PORT} -s" "Creating connection to Interconnect"
+#  fi
+#}
+
+#Add Local port fwd
+fwd_loc2prx() {
+  ${CM_PROXY} -O forward -L ${1}:${2}:${3} 
+}
+
+#Add proxy port fwd
+fwd_prx2ic() {
+  ${CM_PROXY} -t "bash ${CM_PRX2IC} -p ${SM_PORT} -L ${1}:${2}:${3}"
+}	
+
+#Close CM Proxy to IC
+stop_prx2ic() {
+  ${CM_PROXY} -t "bash ${CM_PRX2IC} -p ${SM_PORT} -t"
+}
+
+#Close local CM
+stop_loc2prx() {
+  ${CM_PROXY} -O stop 
+}
+
+add_ports() {
+  pass
+}
+
+build_session() {
+  set_cm_config
+  cm_connect  
+  #cm_prx2ic
+}
+
+get_icinfo() {
+  dhcp_leases=$(cm_connect "-t cat /var/lib/dhcp/dhcpd.leases > dhcpd.leases; python dhcp_table2" "Getting dhcp leases")
+  echo $dhcp_leases
+}
+  
+#random_port
+#fwd_loc2prx 9443:localhost:${NEW_PORT}
+random_port() {
+  NEW_PORT=$(shuf -i 9000-65000 -n1)
+}
+
+
+main() {
+#parse_args "$@"
+
+build_session
+
+}
+
+main "$@"
+
